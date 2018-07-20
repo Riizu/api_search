@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_20_221032) do
+ActiveRecord::Schema.define(version: 2018_07_20_221842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "searches", force: :cascade do |t|
     t.string "keyword"
-    t.integer "num_times"
+    t.integer "num_times", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
