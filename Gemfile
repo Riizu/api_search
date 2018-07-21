@@ -68,6 +68,10 @@ group :test do
 
   # Adds lamen's term tests to Rspec for model testing
   gem 'shoulda-matchers', '~> 3.1'
+
+  # Adds VCR for faster API testing
+  gem 'vcr'
+  gem 'webmock'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
