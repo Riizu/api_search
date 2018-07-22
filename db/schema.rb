@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_20_223545) do
+ActiveRecord::Schema.define(version: 2018_07_22_233013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,17 +21,17 @@ ActiveRecord::Schema.define(version: 2018_07_20_223545) do
     t.integer "attack_bonus"
     t.string "damage_dice"
     t.integer "damage_bonus"
-    t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "monster_id"
+    t.integer "action_type", default: 0
     t.index ["monster_id"], name: "index_actions_on_monster_id"
   end
 
   create_table "monsters", force: :cascade do |t|
     t.string "name"
     t.string "size"
-    t.string "type"
+    t.string "monster_type"
     t.string "subtype"
     t.string "alignment"
     t.integer "armor_class"
