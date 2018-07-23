@@ -27,3 +27,6 @@
 
 # Ignore VCR casettes
 /spec/vcr
+
+# Ignore simplecov files
+/coverage
