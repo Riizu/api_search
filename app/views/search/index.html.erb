@@ -6,10 +6,11 @@
                 <p class="lead text-center">A simple Rails application that searches the 5th Edition SRD for Dungeons and Dragons.</p>
                 <p class="text-center"><%= %> total monsters and counting... <%= link_to("Add More!", monsters_path(create_type: "bulk"), method: :post) %></p>
 
-                <form class="form-inline mx-auto splash-search" style="width: 300px;">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+                <%= form_for @search, url: search_index_path, method: :post, html: {class: "form-inline mx-auto splash-search", style: "width: 300px;"} do |f| %>
+                    <%= f.text_field :keyword, class: "form-control mr-sm-2", type: "search", placeholder: "Search" %>
+
+                    <%= f.submit "Search", class: "btn btn-outline-success my-2 my-sm-0", type: "submit" %>
+                <% end %>
             </div>
         </div>
     </div>
