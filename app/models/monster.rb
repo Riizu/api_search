@@ -8,12 +8,12 @@ class Monster < ApplicationRecord
       end
 
     def self.update_collection
-        monster_list = @srd_service.monster_list
+        monster_list = srd_service.monster_list
 
-        monster_list["results"].each do |name, url|
-            id = url.split("/")[-1]
+        monster_list["results"].each do |result|
+            id = result["url"].split("/")[-1]
             monster = @srd_service.find_monster(id)
-            self.create_from_service(monster)
+            create_from_service(monster)
         end
     end
 
@@ -68,42 +68,48 @@ class Monster < ApplicationRecord
            monster.challenge_rating = monster_hash["challenge_rating"]
         end
 
-        monster_hash["special_abilities"].each do |ability|
-            new_monster.actions.find_or_initialize_by(name: ability["name"]) do |new_action|
-                new_action.name = ability["name"]
-                new_action.description = ability["desc"]
-                new_action.attack_bonus = ability["attack_bonus"]
-                new_action.damage_dice = ability["damage_dice"]
-                new_action.damage_bonus = ability["damage_bonus"]
-                new_action.action_type = Action.action_types[:ability]
-
-                new_action.save
+        if monster_hash["special_abilities"]
+            monster_hash["special_abilities"].each do |ability|
+                new_monster.actions.find_or_initialize_by(name: ability["name"]) do |new_action|
+                    new_action.name = ability["name"]
+                    new_action.description = ability["desc"]
+                    new_action.attack_bonus = ability["attack_bonus"]
+                    new_action.damage_dice = ability["damage_dice"]
+                    new_action.damage_bonus = ability["damage_bonus"]
+                    new_action.action_type = Action.action_types[:ability]
+    
+                    new_action.save
+                end
             end
         end
 
-        monster_hash["actions"].each do |action|
-            new_monster.actions.find_or_initialize_by(name: action["name"]) do |new_action|
-                new_action.name = action["name"]
-                new_action.description = action["desc"]
-                new_action.attack_bonus = action["attack_bonus"]
-                new_action.damage_dice = action["damage_dice"]
-                new_action.damage_bonus = action["damage_bonus"]
-                new_action.action_type = Action.action_types[:action]
-
-                new_action.save
+        if monster_hash["actions"]
+            monster_hash["actions"].each do |action|
+                new_monster.actions.find_or_initialize_by(name: action["name"]) do |new_action|
+                    new_action.name = action["name"]
+                    new_action.description = action["desc"]
+                    new_action.attack_bonus = action["attack_bonus"]
+                    new_action.damage_dice = action["damage_dice"]
+                    new_action.damage_bonus = action["damage_bonus"]
+                    new_action.action_type = Action.action_types[:action]
+    
+                    new_action.save
+                end
             end
         end
 
-        monster_hash["legendary_actions"].each do |legendary_action|
-            new_monster.actions.find_or_initialize_by(name: legendary_action["name"]) do |new_action|
-                new_action.name = legendary_action["name"]
-                new_action.description = legendary_action["desc"]
-                new_action.attack_bonus = legendary_action["attack_bonus"]
-                new_action.damage_dice = legendary_action["damage_dice"]
-                new_action.damage_bonus = legendary_action["damage_bonus"]
-                new_action.action_type = Action.action_types[:legendary_action]
-
-                new_action.save
+        if monster_hash["legendary_actions"]
+            monster_hash["legendary_actions"].each do |legendary_action|
+                new_monster.actions.find_or_initialize_by(name: legendary_action["name"]) do |new_action|
+                    new_action.name = legendary_action["name"]
+                    new_action.description = legendary_action["desc"]
+                    new_action.attack_bonus = legendary_action["attack_bonus"]
+                    new_action.damage_dice = legendary_action["damage_dice"]
+                    new_action.damage_bonus = legendary_action["damage_bonus"]
+                    new_action.action_type = Action.action_types[:legendary_action]
+    
+                    new_action.save
+                end
             end
         end
 
