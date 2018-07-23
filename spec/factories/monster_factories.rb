@@ -1,6 +1,6 @@
 FactoryBot.define do
     factory :monster do
-        name "Test"
+        name
         size { ["small", "medium", "large", "gargantuan"].sample }
         monster_type { ["humanoid", "aberration", "beast", "undead"].sample }
         subtype { [""].sample }
@@ -46,5 +46,9 @@ FactoryBot.define do
         senses "Darkvision"
         languages { ["Common", "Elven", "Dwarvish", "Abyssal", "Fey"].sample }
         challenge_rating { rand(1..25) }
+    end
+
+    sequence :name do |n|
+        "Monster " + n.to_s
     end
   end
