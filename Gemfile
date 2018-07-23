@@ -36,6 +36,15 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+# Add bootstrap support to Rails
+gem 'bootstrap', '~> 4.1.1'
+
+# Add JQuery support to Rails
+gem 'jquery-rails'
+
+# Add Faraday
+gem 'faraday'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -59,6 +68,10 @@ group :test do
 
   # Adds lamen's term tests to Rspec for model testing
   gem 'shoulda-matchers', '~> 3.1'
+
+  # Adds VCR for faster API testing
+  gem 'vcr'
+  gem 'webmock'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
