@@ -1,6 +1,4 @@
 class Search < ApplicationRecord
-    before_create :check_params
-
     validates :keyword, uniqueness: true, presence: true
     validates :num_times, presence: true
 
@@ -20,9 +18,5 @@ class Search < ApplicationRecord
         Monster.where(query_string, "%#{keyword.downcase}%", "%#{keyword.downcase}%", "%#{keyword.downcase}%", 
             "%#{keyword.downcase}%", "%#{keyword.downcase}%", "%#{keyword.downcase}%", "%#{keyword.downcase}%", "%#{keyword.downcase}%", "%#{keyword.downcase}%", 
             "%#{keyword.downcase}%", "%#{keyword.downcase}%", "%#{keyword.downcase}%")
-    end
-
-    def check_params
-        self.keyword.downcase!
     end
 end

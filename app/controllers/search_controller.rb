@@ -4,6 +4,7 @@ class SearchController < ApplicationController
     end
 
     def create
+        params[:search][:keyword].downcase!
         search = Search.find_or_create_by(search_params)
         redirect_to search_path(search)
     end
