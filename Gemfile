@@ -72,6 +72,9 @@ group :test do
   # Adds VCR for faster API testing
   gem 'vcr'
   gem 'webmock'
+
+  # Adds Simplecov for checking code coverage
+  gem 'simplecov', require: false, group: :test
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
