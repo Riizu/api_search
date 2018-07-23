@@ -10,9 +10,13 @@ class SearchController < ApplicationController
     end
 
     def show
-        @search = Search.find(params[:id])
-        @searches = Search.order(keyword: :desc)
-        @results = @search.search_for_keyword
+        if Search.exists?(params[:id])
+            @search = Search.find(params[:id])
+            @searches = Search.order(keyword: :desc)
+            @results = @search.search_for_keyword
+        else
+            redirect_to root_path
+        end
     end
 
     def search_params
