@@ -1,6 +1,7 @@
 class SearchController < ApplicationController
     def index
         @search = Search.new()
+        @monster_count = Monster.all.count
     end
 
     def create
