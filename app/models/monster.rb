@@ -97,4 +97,16 @@ class Monster < ApplicationRecord
             end
         end
     end
+
+    def legendary_actions
+        actions.where(action_type: Action.action_types[:legendary])
+    end
+
+    def monster_actions
+        actions.where(action_type: Action.action_types[:action])
+    end
+
+    def special_abilities
+        actions.where(action_type: Action.action_types[:special_abilities])
+    end
 end

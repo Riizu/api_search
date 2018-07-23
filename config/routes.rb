@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root 'searches#index'
+  root 'search#index'
 
   resources :monsters, only: [:create]
+  resources :search, only: [:create, :show]
 end

@@ -75,6 +75,9 @@ group :test do
 
   # Adds Simplecov for checking code coverage
   gem 'simplecov', require: false, group: :test
+
+  # Add FactoryBot for simple model creation in testing
+  gem "factory_bot_rails", "~> 4.0"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
